@@ -8,11 +8,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@EnableEurekaClient
+@EnableEurekaClient  //Not mandatory to add now, however add to improve readability
 public class MovieCatalogServiceApplication {
 	
 	@Bean
-	@LoadBalanced  //this tells resttemplate that dont the url literally, call eureka to look in its directory and ask for the client with the name passed in url.
+	//Does load balancing at client side too.
+	@LoadBalanced  //this tells resttemplate that dont take the url literally, call eureka to look in its directory and ask for the client with the name passed in url.
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();
 	}
